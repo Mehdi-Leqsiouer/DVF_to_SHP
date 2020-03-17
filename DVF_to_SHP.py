@@ -12,7 +12,7 @@ class Cadastre(object):
 
         sf = shapefile.Reader(file)
 
-        print('Chargement de {}'.format(file))
+        print('Loading: {}'.format(file))
 
         fields = [x[0] for x in sf.fields][1:]
         geom = pd.DataFrame(columns=fields, data=sf.records())
@@ -20,7 +20,7 @@ class Cadastre(object):
         geom["coords"] = geom["coords"].apply(lambda x: Polygon([p for p in x]))
 
         geom.set_index(index, inplace = True)
-        print('{} features'.format(geom.shape))
+        print('Loaded {} features'.format(geom.shape))
         self.geom = geom
 
     def get_section_geom(self):
@@ -47,7 +47,7 @@ class ValeursFoncieres(object):
 
         dfs = []
         for f in files:
-            print('Chargement : {}'.format(f))
+            print('Loading : {}'.format(f))
             temp = pd.read_csv(f, sep = '|')
             dfs.append(temp.loc[temp['Code departement'].isin(departements)])
             del temp
@@ -67,6 +67,7 @@ class ValeursFoncieres(object):
             df['Id'] = df['Id'].apply(lambda x: '751' + x[3:])
 
         self.df = df
+        print('Loaded {} DataFrame'.format(df.shape))
 
     def get_av_price_by_id(self):
 

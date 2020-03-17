@@ -7,3 +7,5 @@ The data comes from the french administration
 - [Demandes de valeurs foncières (DVF)](https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/)
 
 See the jupyter notebook for more details.
+
+![alt text](DVF_to_SHP.png)
